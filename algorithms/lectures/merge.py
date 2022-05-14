@@ -5,7 +5,6 @@ def sort(a):
     mid = len(a) // 2
     b = sort(a[:mid])
     c = sort(a[mid:])
-    print(b,c)
     return merge(b,c)
 def merge(a,b):
     n = len(a)
