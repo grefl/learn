@@ -67,7 +67,7 @@ def f(n):
 
 Best case = O(n). The while loop will not run since there are not elements to swap
 
-Worst case = O(n^2) The while loop will loop from j to 0 for every loop of the outer loop.
+Worst case = O(n^2) The while loop will loop from j to 0 for every iteration of the outer loop.
 
 
 
