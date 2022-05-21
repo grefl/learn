@@ -68,3 +68,8 @@ def bs_lei(a, x):
       l = m
   return r
 ```
+
+
+## Summary
+
+Think of it like this. You want to find the minimum good number. So you mark all numbers to the left of x as bad and all numbers to the right of x as good.
