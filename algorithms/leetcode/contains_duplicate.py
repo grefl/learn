@@ -15,17 +15,17 @@ def contains_duplicate(input):
 
     for v in input:
         if v in s:
-            return False
+            return True 
         s.add(v) 
-    return True
+    return False 
 
 
 class Test(unittest.TestCase):
 
-    def test_should_be_false(self):
+    def test_should_be_true(self):
         input = [1,2,3,4,1]
-        i_am_false = contains_duplicate(input)
-        self.assertFalse(i_am_false)
+        i_am_true = contains_duplicate(input)
+        self.assertTrue(i_am_true)
 
 
 
