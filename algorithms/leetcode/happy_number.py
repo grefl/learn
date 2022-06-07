@@ -1,6 +1,19 @@
 
 
+def get_next(n):
+    temp = 0
+    while n > 0:
+        temp += pow(n % 10, 2)
+        n = n // 10
+    return temp 
 
+def is_happy_floyd(n):
+    tortoise = n
+    rabbit   = get_next(n)
+    while rabbit != 1 and tortoise != rabbit:
+        tortoise = get_next(tortoise)
+        rabbit   = get_next(get_next(rabbit))
+    return rabbit == 1
 
 def is_happy(n):
     """
@@ -41,5 +54,6 @@ def is_happy_leet(n):
         n = temp
     return n
 assert is_happy(19)
-assert is_happy_leet(2)
+assert is_happy_leet(19)
+assert is_happy_floyd(19)
 
