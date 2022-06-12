@@ -1,0 +1,8 @@
+5 1
+BGGBG
+['B', 'G', 'G', 'B', 'G']
+for i, child in queue:
+  if child == 'B':
+    temp = queue[i]
+    queue[i] = queue[i+2]
+    queue[i+2] = temp
