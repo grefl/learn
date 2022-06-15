@@ -19,6 +19,7 @@ class Solution:
         left = 1 
         right = k
         max_sum = sum(nums[:k])
+        print(max_sum)
         current_sum = max_sum 
         while right  < len(nums):
             current_sum = current_sum - nums[left-1] + nums[right]
@@ -35,8 +36,8 @@ class Solution:
 
 if __name__ == "__main__":
 
-    nums = [5]
-    k = 1 
+    nums = [1,12,-5,-6,50,3]
+    k = 4 
     solution = Solution()
     res = solution.findMaxAverage(nums)
     print(res)
