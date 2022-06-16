@@ -32,11 +32,28 @@ fn can_construct(ransom_note: String, magazine: String) -> bool {
     }
     return true;
 }
+fn can_construct2(ransom_note: String, magazine: String) -> bool {
+    let mut frequency_map: [i32; 26] = [0; 26];
+    for c in magazine.as_bytes() {
+        frequency_map[(c - b'a') as usize] += 1;
+    }
+    for c in ransom_note.as_bytes() {
+        if frequency_map[(c - b'a') as usize] > 0 {
+            frequency_map[(c - b'a') as usize] -= 1;
+            if frequency_map[(c - b'a') as usize] < 0 {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    return true;
+}
 
 fn main() {
     let ransom_note = String::from("aa");
-    let magazine = String::from("ab");
+    let magazine = String::from("aab");
 
-    let can = can_construct(ransom_note, magazine);
+    let can = can_construct2(ransom_note, magazine);
     println!("{}", can);
 }
