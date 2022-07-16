@@ -17,3 +17,12 @@ hash_function = m^u values.
 Another solution is too make an array that is so big that it is less likely to end up with collisions.
 
 We will need a large array. About n^2 in length
+
+
+#### Pros
+
+- works well for small sizes of n elements 
+
+#### Cons
+
+- Bad for large sizes of n elements. 1 million squared will be too much memory. 
