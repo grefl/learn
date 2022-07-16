@@ -15,3 +15,5 @@ hash_function = m^u values.
 ### Make a huge array
 
 Another solution is too make an array that is so big that it is less likely to end up with collisions.
+
+We will need a large array. About n^2 in length
