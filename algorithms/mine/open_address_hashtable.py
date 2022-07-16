@@ -49,16 +49,6 @@ class Test(unittest.TestCase):
         h.insert("Hollow knight", "10/10")
         h.insert("GORB1", "I am not GORB!")
         self.assertEqual(h.get("GORB"), "I am GORB!")
-    def test_2(self):
-        words = Path('./words.txt').read_text().split('\n')[:1000]
-        h = HashTable(len(words))
-        print(h.size)
-        for word in words:
-            h.insert(word, word)
-
-        for word in words:
-            v = h.get(word)
-        print(h.array)
 
 if __name__ == "__main__":
     unittest.main()
