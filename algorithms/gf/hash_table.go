@@ -3,11 +3,14 @@ package main
 import (
 	"fmt"
 	"log"
+  "time"
 	"os"
 	"strings"
-	"time"
 )
 
+
+const S uint = 919
+const P uint = 7919
 func bench(compute func(), count int) {
 	for i := 0; i < count; i += 1 {
 		start := time.Now()
@@ -19,8 +22,6 @@ func bench(compute func(), count int) {
 	}
 }
 
-const S uint = 7
-const P uint = 31
 
 func take(array []string, amount int) []string {
 	new_array := make([]string, amount)
@@ -32,9 +33,11 @@ func take(array []string, amount int) []string {
 func (h *HashTable) hash(key string) uint {
 	hashed_key := S
 	for _, c := range key {
-		hashed_key += ((hashed_key * 31) + uint(c)) % uint(len(h.array))
+    hashed_key *= P + uint(c)
+    n := uint(len(h.array) -1)
+    hashed_key = (hashed_key % n + n) % n
 	}
-	return hashed_key % uint(len(h.array))
+	return hashed_key % uint(len(h.array)-1)
 }
 
 type HashTable struct {
@@ -48,8 +51,10 @@ func (h *HashTable) size() int {
 
 func (h *HashTable) insert(current_key, current_value string) bool {
 	hashed_index := h.hash(current_key)
-	for len(h.array[hashed_index]) == 0 {
-		hashed_index = (hashed_index + 1) % uint(len(h.array))
+  for len(h.array[hashed_index][0]) != 0 {
+    hashed_index += 1
+    n := uint(len(h.array) -1)
+		hashed_index = (hashed_index % n + n ) % n
 	}
 	h.array[hashed_index][0] = current_key
 	h.array[hashed_index][1] = current_value
@@ -58,11 +63,13 @@ func (h *HashTable) insert(current_key, current_value string) bool {
 
 func (h *HashTable) get(current_key string) (string, bool) {
 	hashed_index := h.hash(current_key)
-	for len(h.array[hashed_index]) == 0 {
-		hashed_index = (hashed_index + 1) % uint(len(h.array))
-	}
-	if h.array[hashed_index][0] == current_key {
-		return h.array[hashed_index][1], true
+  for len(h.array[hashed_index][0]) != 0 {
+    if h.array[hashed_index][0] == current_key {
+      return h.array[hashed_index][1], true
+    }
+    hashed_index += 1
+    n := uint(len(h.array) -1)
+		hashed_index = (hashed_index % n + n ) % n
 	}
 	return "", false
 }
@@ -98,5 +105,5 @@ func main() {
 		log.Fatal(err)
 	}
 	words := strings.Split(string(data), "\n")
-	bench(func() { test(words) }, 10)
+  bench(func() {test(words)}, 10)
 }
