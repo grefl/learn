@@ -44,4 +44,16 @@ def get(current_key):
 Now if our hash function is good we will evenly distribute each key across the array. And if there is a collision we shall just loop until we find a free spot, then we assign the (key, value) into the array. Now, when we look up the key we can double check that the keys match before returning the value.
 
 
+## Collisions - the bane of hash tables
+
+In a perfect world a hashtable would receive a well distributed input of keys (perhaps random numbers) but real life is on hard mode so no dice. Instead, the input of of keys is usually clustered and means that our poor hash function will have a hard time allocating similar keys to different parts of the array. So we're going to end up with collisions whether we like it or not. 
+
+To illustrate this, consider that most data is structure in some way or other, otherwise it's just random noise. So when receiving keys and hashing them, we're going to have to deal with the patterns that end up skewing the distribution of our hashed_indexes. 
+
+
+### Interesting points
+
+- If domain is unknown, then try to make a function that isn't sensitive to the lower or higher bits of the incoming keys.
+- If the domain is known, then try to avoid using the known skewed input. Example, don't use the first letter of english words since it is unevenly distributed.
+
 
